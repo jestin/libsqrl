@@ -12,7 +12,7 @@ sqrl_client::~sqrl_client()
 {
 }
 
-authentication_data* sqrl_client::generate_sqrl_request(char* master_identity_key, std::string password, std::string url)
+authentication_data* sqrl_client::get_sqrl_authentication_data(char* master_identity_key, std::string password, std::string url)
 {
     key_generator keygen;
     std::string domain = get_domain(url);
