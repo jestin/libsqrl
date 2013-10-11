@@ -24,7 +24,15 @@ authentication_data* sqrl_client::generate_sqrl_request(char* master_identity_ke
 
     char* master_key = get_master_key(master_identity_key, password);
 
-    return keygen.generate_key(master_key, domain);
+    char* private_key = keygen.generate_key(master_key, domain);
+
+    authentication_data* data = (authentication_data*)malloc(sizeof(authentication_data));
+
+    data->url = url;
+    data->signature = sign(private_key, url);
+    data->identity = create_public_key(private_key);
+
+    return data;
 }
 
 std::string sqrl_client::get_domain(std::string url)
@@ -59,6 +67,16 @@ char* sqrl_client::get_master_key(char* master_identity_key, std::string passwor
     }
 
     return output;
+}
+
+char* sqrl_client::sign(char* key, std::string url)
+{
+    return NULL;
+}
+
+char* sqrl_client::create_public_key(char* key)
+{
+    return NULL;
 }
 
 } // namespace libsqrl

@@ -2,7 +2,6 @@
 #define KEY_GENERATOR_H
 
 #include<libsqrl_global.h>
-#include<types.h>
 #include<string>
 
 namespace libsqrl {
@@ -13,7 +12,7 @@ public:
     key_generator();
     ~key_generator();
 
-    authentication_data* generate_key(char* master_key, std::string domain);
+    char* generate_key(char* master_key, std::string domain);
 };
 
 }

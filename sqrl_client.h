@@ -18,6 +18,8 @@ public:
 private:
     std::string get_domain(std::string url);
     char* get_master_key(char* master_identity_key, std::string password);
+    char* sign(char* key, std::string url);
+    char* create_public_key(char* key);
 };
 
 }

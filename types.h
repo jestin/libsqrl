@@ -8,8 +8,8 @@ namespace libsqrl {
 struct authentication_data
 {
     std::string url;
-    char signature[64];
-    char identity[32];
+    char* signature;
+    char* identity;
 };
 
 }
