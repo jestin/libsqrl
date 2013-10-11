@@ -1,4 +1,5 @@
 #include <key_generator.h>
+#include <sodium/sodium.h>
 
 namespace libsqrl {
 

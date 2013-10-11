@@ -1,5 +1,6 @@
 #include <sqrl_client.h>
 #include <key_generator.h>
+#include <scrypt.h>
 
 namespace libsqrl {
 
@@ -47,7 +48,17 @@ std::string sqrl_client::get_domain(std::string url)
 
 char* sqrl_client::get_master_key(char* master_identity_key, std::string password)
 {
-    return NULL;
+    char scrypt_output[32];
+    char* output = (char*) malloc(32);
+
+    scrypt_1024_1_1_256(password.c_str(), scrypt_output);
+
+    for(int i = 0; i < 32; i++)
+    {
+        output[i] = scrypt_output[i] ^ master_identity_key[i];
+    }
+
+    return output;
 }
 
 } // namespace libsqrl
