@@ -1,6 +1,7 @@
 #include <sqrl_client.h>
 #include <key_generator.h>
 #include <scrypt.h>
+#include <sodium/sodium.h>
 
 namespace libsqrl {
 
@@ -71,7 +72,11 @@ char* sqrl_client::get_master_key(char* master_identity_key, std::string passwor
 
 char* sqrl_client::sign(char* key, std::string url)
 {
-    return NULL;
+    char* output = (char*) malloc(64);
+    unsigned long long signed_length = 0;
+    crypto_sign_ed25519((unsigned char*) output, &signed_length, (unsigned char*) url.c_str(), url.length(), (unsigned char*) key);
+
+    return output;
 }
 
 char* sqrl_client::create_public_key(char* key)
