@@ -81,7 +81,9 @@ char* sqrl_client::sign(char* key, std::string url)
 
 char* sqrl_client::create_public_key(char* key)
 {
-    return NULL;
+    char* output = (char*) malloc(32);
+    crypto_sign_ed25519_keypair((unsigned char*) output, (unsigned char*) key);
+    return output;
 }
 
 } // namespace libsqrl
