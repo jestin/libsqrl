@@ -13,7 +13,7 @@ public:
     sqrl_client();
     ~sqrl_client();
 
-    authentication_data* get_sqrl_authentication_data(char* master_identity_key, std::string password, std::string url);
+    authentication_data get_sqrl_authentication_data(char* master_identity_key, std::string password, std::string url);
 
 private:
     std::string get_domain(std::string url);

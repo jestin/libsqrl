@@ -3,6 +3,7 @@
 
 #include "libsqrl_global.h"
 #include <types.h>
+#include <sqrl_client.h>
 
 namespace sqrl = libsqrl;
 

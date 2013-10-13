@@ -6,7 +6,7 @@
 
 QT       -= core gui
 
-TARGET = libsqrl
+TARGET = sqrl
 TEMPLATE = lib
 
 DEFINES += LIBSQRL_LIBRARY
@@ -23,6 +23,8 @@ HEADERS += libsqrl.h\
     sqrl_client.h \
     scrypt.h
 
+unix|win32: LIBS += -lsodium
+
 unix:!symbian {
     maemo5 {
         target.path = /opt/usr/lib
@@ -31,3 +33,6 @@ unix:!symbian {
     }
     INSTALLS += target
 }
+
+unix: CONFIG += link_pkgconfig
+unix: PKGCONFIG += openssl

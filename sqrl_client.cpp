@@ -13,25 +13,20 @@ sqrl_client::~sqrl_client()
 {
 }
 
-authentication_data* sqrl_client::get_sqrl_authentication_data(char* master_identity_key, std::string password, std::string url)
+authentication_data sqrl_client::get_sqrl_authentication_data(char* master_identity_key, std::string password, std::string url)
 {
     key_generator keygen;
     std::string domain = get_domain(url);
-
-    if(domain == "")
-    {
-        return NULL;
-    }
 
     char* master_key = get_master_key(master_identity_key, password);
 
     char* private_key = keygen.generate_key(master_key, domain);
 
-    authentication_data* data = (authentication_data*)malloc(sizeof(authentication_data));
+    authentication_data data;
 
-    data->url = url;
-    data->signature = sign(private_key, url);
-    data->identity = create_public_key(private_key);
+    data.url = url;
+    data.signature = sign(private_key, url);
+    data.identity = create_public_key(private_key);
 
     return data;
 }
